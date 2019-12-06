@@ -6,6 +6,7 @@ import { Container } from '@material-ui/core';
 import { debounce } from "lodash";
 import SearchHeader from './SearchHeader/SearchHeader';
 import LoaderCircle from './LoaderCircle/LoaderCircle';
+import ErrorPopup from './ErrorPopup/ErrorPopup';
 
 const imageBoxHeight = 184;
 const debounceTms = 700;
@@ -42,12 +43,16 @@ class App extends Component {
     this.handleResize = null;
   }
 
-  handleResizeDebounce = debounce(()=>{
+  handleResizeDebounce = debounce(() => {
     this.setState({ cols: Math.floor((document.body.clientWidth - 10) / 240) });
-  },debounceTms)
+  }, debounceTms)
 
   handleResize() {
     this.handleResizeDebounce();
+  }
+
+  handleClosePopup = () => {
+    this.setState({ error: "" });
   }
 
   onImagesScrollDebounce = debounce(() => {
@@ -88,14 +93,15 @@ class App extends Component {
   }
 
   render() {
-    const { images, cols, isLoading } = this.state;
+    const { images, cols, isLoading, error } = this.state;
     return (
       <Fragment>
+        <ErrorPopup error={error} />
         <SearchHeader onSearchFieldChange={this.onSearchFieldChange} />
         {isLoading && <LoaderCircle />}
 
         <div className="App" onScroll={this.onImagesScroll}>
-          <Container style={{ margin: '20px 0' }}>
+          <Container style={{ margin: '20px 0', [!images.length ? "textAlign" : ""]: !images.length ? "center" : "" }}>
             <ImagesViewer images={images} cols={cols} />
           </Container>
         </div>
