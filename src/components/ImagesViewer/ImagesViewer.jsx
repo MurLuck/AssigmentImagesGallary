@@ -25,8 +25,8 @@ export default ({ images = [], cols = 4 } = {}) => {
         }
       </GridList >
       : <FormLabel style={{
-        fontSize:"1.5rem",
-        fontWight:"700"
+        fontSize: "1.5rem",
+        fontWight: "700"
       }} >
         No images found
        </FormLabel>

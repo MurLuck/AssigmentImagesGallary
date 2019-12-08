@@ -101,7 +101,7 @@ class App extends Component {
         {isLoading && <LoaderCircle />}
 
         <div className="App" onScroll={this.onImagesScroll}>
-          <Container style={{ margin: '20px 0', [!images.length ? "textAlign" : ""]: !images.length ? "center" : "" }}>
+          <Container style={{ margin: '20px auto', [!images.length ? "textAlign" : ""]: !images.length ? "center" : "" }}>
             <ImagesViewer images={images} cols={cols} />
           </Container>
         </div>

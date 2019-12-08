@@ -3,7 +3,7 @@ import { Container, Dialog, DialogContent, DialogContentText, DialogActions, But
 
 export default ({ error, handleClosePopup }) => {
   return (
-    <Container center>
+    <Container>
       <Dialog
         open={error ? true : false}
         onClose={handleClosePopup}>
