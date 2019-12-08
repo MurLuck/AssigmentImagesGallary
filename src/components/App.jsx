@@ -9,7 +9,7 @@ import LoaderCircle from './LoaderCircle/LoaderCircle';
 import ErrorPopup from './ErrorPopup/ErrorPopup';
 
 const imageBoxHeight = 184;
-const debounceTms = 700;
+const debounceTms = 500;
 
 class App extends Component {
 
@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize.bind(this));
+    window.addEventListener('resize', this.handleResize.bind(this));    
     getImages("")
       .then(imagesData => {
         if (imagesData instanceof Object && "photo" in imagesData)
@@ -85,7 +85,7 @@ class App extends Component {
           this.setState({ error: imagesData, isLoading: false })
       });
     this.setState({ isLoading: true, search });
-  }, debounceTms)
+  }, debounceTms+200)
 
   onSearchFieldChange = (event) => {
     let search = event.currentTarget.value;
